@@ -51,15 +51,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void edit(Long id, User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User newUser = userRepository.findById(id).orElseThrow();
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
-        newUser.getRoles().clear();
-        newUser.setRoles(user.getRoles());
-        userRepository.save(newUser);
+        userRepository.save(user);
     }
+
     @Override
     @Transactional
     public void delete(Long id) {

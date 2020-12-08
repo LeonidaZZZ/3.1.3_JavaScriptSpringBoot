@@ -1,6 +1,5 @@
 package com.leonidaz.SpringBootApp.controller;
 
-import com.leonidaz.SpringBootApp.repository.UserRepository;
 import com.leonidaz.SpringBootApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

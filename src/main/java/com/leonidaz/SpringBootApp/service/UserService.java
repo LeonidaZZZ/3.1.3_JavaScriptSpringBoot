@@ -1,8 +1,6 @@
 package com.leonidaz.SpringBootApp.service;
 
 import com.leonidaz.SpringBootApp.model.User;
-import com.leonidaz.SpringBootApp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -14,14 +12,14 @@ public interface UserService extends UserDetailsService {
 
     User findById(Long id);
 
-    public List<User> allUsers();
+    List<User> allUsers();
 
-    public void save(User user);
+    void save(User user);
 
-    public void edit(Long id, User user);
+    void edit(Long id, User user);
 
-    public void delete(Long id);
+    void delete(Long id);
 
-    public User findByName(String firstname);
+    User findByName(String firstname);
 
 }

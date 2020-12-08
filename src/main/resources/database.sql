@@ -8,6 +8,7 @@ CREATE TABLE spring_boot.users (
   email VARCHAR(255) NOT NULL,
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
+  age INT NOT NULL,
   password VARCHAR(255) NOT NULL
 );
 
@@ -19,7 +20,7 @@ CREATE TABLE spring_boot.user_roles (
   FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
-INSERT INTO spring_boot.users VALUES (1, 'admin@mail.ru', 'admin','admin','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
+INSERT INTO spring_boot.users VALUES (1, 'admin@mail.ru', 'admin','admin',20,'$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
 
 INSERT INTO spring_boot.roles VALUES (1, 'ROLE_USER');
 INSERT INTO spring_boot.roles VALUES (2, 'ROLE_ADMIN');

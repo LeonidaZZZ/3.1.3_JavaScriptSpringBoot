@@ -4,6 +4,8 @@ import com.leonidaz.SpringBootApp.model.Role;
 import com.leonidaz.SpringBootApp.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService{
 
@@ -16,4 +18,8 @@ public class RoleServiceImpl implements RoleService{
     public Role findById(Long id){
         return roleRepository.findById(id).orElseThrow();
     }
+    public List<Role> findAll(){
+        return roleRepository.findAll();
+    }
+
 }
