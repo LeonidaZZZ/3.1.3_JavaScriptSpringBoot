@@ -1,32 +1,30 @@
 package com.leonidaz.SpringBootApp.controller;
 
+import com.leonidaz.SpringBootApp.model.User;
 import com.leonidaz.SpringBootApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/users")
-public class UserController {
-
-
+@RestController
+@RequestMapping("/users/u")
+public class UserRestController {
     private final UserService userService;
 
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 
-
     @GetMapping
-    public String show(Model model){
+    public ResponseEntity<User> showById(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("user",userService.findByName(auth.getName()));
-        return "users/show_user";
+        return new ResponseEntity<>(userService.findByName(auth.getName()), HttpStatus.OK);
     }
 }
