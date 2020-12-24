@@ -6,6 +6,8 @@ import com.leonidaz.SpringBootApp.repository.RoleRepository;
 import com.leonidaz.SpringBootApp.service.RoleService;
 import com.leonidaz.SpringBootApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminRestController {
 
@@ -26,34 +28,22 @@ public class AdminRestController {
         this.userService = userService;
         this.roleService = roleService;
     }
-    @GetMapping()
-    public String allUsers(Model model){
-        model.addAttribute("users", userService.allUsers());
+
+    @GetMapping("/userList")
+    public ResponseEntity<List<User>> getUsersList(){
+        return new ResponseEntity<>(userService.allUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/auth")
+    public ResponseEntity<User> getAuthUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
-        String role = user.getRoles().iterator().next().getAuthority();
-        model.addAttribute("roleSet", roleService.findAll());
-        model.addAttribute("admin", user);
-        model.addAttribute("role", role);
-        return "admin/all_users";
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PostMapping
-    public String create(@ModelAttribute("user") User user) {
+    @PostMapping("/save")
+    public ResponseEntity<Void> saveOrUpdate(@RequestBody User user){
         userService.save(user);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/{id}")
-    public String editPerson(@ModelAttribute("user") User user,
-                             @PathVariable("id") Long id) {
-        userService.edit(id, user);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/{id}/delete")
-    public String delete(@PathVariable("id") Long id) {
-        userService.delete(id);
-        return "redirect:/admin";
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
