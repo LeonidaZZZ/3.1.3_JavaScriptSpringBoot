@@ -1,10 +1,7 @@
-$.ajax({
-    type: 'GET',
-    url: 'http://localhost:8080/users/u',
-    dataType: 'JSON',
-    contentType: 'application/json',
-    success: function (data){
-        console.log(data);
+fetch('http://localhost:8080/users/u')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
         let table = ""
         let role1 = data.roles[0].name
         let role2 = data.roles[1].name
@@ -21,5 +18,4 @@ $.ajax({
 
         console.log(table)
         $('#user_table').append(table)
-    }
-})
+    })
