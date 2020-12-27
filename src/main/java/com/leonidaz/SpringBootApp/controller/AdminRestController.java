@@ -1,19 +1,12 @@
 package com.leonidaz.SpringBootApp.controller;
 
-import com.leonidaz.SpringBootApp.model.Role;
 import com.leonidaz.SpringBootApp.model.User;
-import com.leonidaz.SpringBootApp.repository.RoleRepository;
-import com.leonidaz.SpringBootApp.service.RoleService;
 import com.leonidaz.SpringBootApp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -22,12 +15,9 @@ import java.util.*;
 public class AdminRestController {
 
     private final UserService userService;
-    private final RoleService roleService;
 
-
-    public AdminRestController(UserService userService, RoleService roleService) {
+    public AdminRestController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/userList")
