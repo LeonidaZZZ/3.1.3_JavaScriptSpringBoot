@@ -55,9 +55,11 @@
                                     <tr>
                                         <td><h2>User information page</h2></td>
                                     </tr>
+
                                     <tr style="background: white">
                                         <td align="center">
                                             <table id="all_users_table" class="table table-hover borderless">
+                                                <thead>
                                                 <tr><h3>All users</h3></tr>
                                                 <tr>
                                                     <th>Id</th>
@@ -69,6 +71,8 @@
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
+                                                </thead>
+                                                <tbody id="tBody"></tbody>
                                                 <div></div>
                                                 <div>
 <!--                                                    <tr>-->
@@ -219,7 +223,7 @@
 <!--                                                                                    </div>-->
 <!--                                                                                </div>-->
 <!--                                                                            </div>-->
-
+<!--                                                                        </form>-->
 <!--                                                                    </div>-->
 <!--                                                                    <div class="modal-footer">-->
 <!--                                                                        <button type="button" class="btn btn-secondary"-->
@@ -229,7 +233,7 @@
 <!--                                                                        <input type="submit" class="btn btn-primary"-->
 <!--                                                                               value="Edit">-->
 <!--                                                                    </div>-->
-<!--                                                                    </form>-->
+
 
 <!--                                                                </div>-->
 <!--                                                            </div>-->
@@ -252,7 +256,7 @@
                                     </tr>
                                     <tr style="background: white">
                                         <td align="center">
-                                            <form>
+                                            <form id="formNewUser">
                                                 <div class="form-group col-4" align="center">
                                                     <div>
 
@@ -275,8 +279,8 @@
                                                             <div class="col">
                                                                 <label class="control-label" for="roleSelect">Role</label>
                                                                 <select size="3" multiple class="form-control" id="roleSelect" name="roleSet">
-                                                                    <option id="admin_select" value="2">Admin</option>
-                                                                    <option id="user_select" value="1">User</option>
+                                                                    <option id="admin_select" value="ROLE_ADMIN">Admin</option>
+                                                                    <option id="user_select" value="ROLE_USER">User</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -293,6 +297,7 @@
                             </div>
                             <!--NEW USER END-->
                         </div>
+
                     </div>
                     <!--ADMIN PANEL END-->
                     <!--USER PANEL-->
@@ -336,6 +341,9 @@
                 </div>
             </div>
         </div>
+        <div id="modalWindow"></div>
+        <script src="../../static/rolesCreator.js"></script>
+        <script src="../../static/listRoles.js"></script>
     <script src="../../static/all_users.js"></script>
     </body>
 
