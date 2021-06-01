@@ -14,4 +14,7 @@ public class AdminController {
         return "admin/all_users";
     }
 
+
+    @GetMapping
+    public void meth(){return;}
 }
