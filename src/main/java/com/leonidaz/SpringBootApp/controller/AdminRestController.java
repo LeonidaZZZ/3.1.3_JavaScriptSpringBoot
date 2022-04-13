@@ -15,7 +15,7 @@ import java.util.*;
 public class AdminRestController {
 
     private final UserService userService;
-
+    private String s = null;
     public AdminRestController(UserService userService) {
         this.userService = userService;
     }
